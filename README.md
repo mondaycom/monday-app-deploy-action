@@ -35,9 +35,19 @@ Can be found using `mapps app-version:list` command in your terminal or in the d
 
 Force deploying to live version.
 
+## `working-directory`
+
+**Optional**
+
+Working directory to run the deployment from. Defaults to the root directory (`.`).
+
+This is useful when your monday app code is in a subdirectory of your repository.
+
 
 
 ## Example usage
+
+### Basic usage
 ```
 name: Deploy app to monday
 
@@ -57,5 +67,28 @@ jobs:
         with:
           token: ${{ secrets.MONDAY_TOKEN }}
           appId: 10110073
+```
+
+### Using working directory
+```
+name: Deploy app to monday
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Deploy app to monday
+        uses: mondaycom/monday-app-deploy-action@master
+        with:
+          token: ${{ secrets.MONDAY_TOKEN }}
+          appId: 10110073
+          working-directory: ./my-app
 ```
 

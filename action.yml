@@ -15,6 +15,10 @@ inputs:
     description: 'Force deploy to live version'
     required: false
     default: false
+  working-directory:
+    description: 'Working directory'
+    required: false
+    default: '.'
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -23,3 +27,4 @@ runs:
   - ${{ inputs.appId }}
   - ${{ inputs.versionId }}
   - ${{ inputs.force }}
+  - ${{ inputs.working-directory }

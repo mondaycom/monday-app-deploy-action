@@ -4,6 +4,7 @@ TOKEN=$1
 APP_ID=$2
 VERSION_ID=$3
 FORCE=$4
+WORKING_DIR=$5
 
 mapps init -t $TOKEN
 
@@ -24,6 +25,11 @@ if [ -z "$FORCE" ]; then
   FORCE_ARG=""
 else
   FORCE_ARG="-f"
+fi
+
+if [ -n "$WORKING_DIR" ] && [ "$WORKING_DIR" != "." ]; then
+  echo "Changing to working directory: $WORKING_DIR"
+  cd "$WORKING_DIR" || { echo "Failed to change to directory $WORKING_DIR"; exit 1; }
 fi
 
 mapps app:deploy $APP_ID_ARG $VERSION_ID_ARG $FORCE_ARG

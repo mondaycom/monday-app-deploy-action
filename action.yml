@@ -27,4 +27,4 @@ runs:
   - ${{ inputs.appId }}
   - ${{ inputs.versionId }}
   - ${{ inputs.force }}
-  - ${{ inputs.working-directory }
+  - ${{ inputs.working-directory }}
